@@ -1,0 +1,12 @@
+{
+    "_embedded": {
+        "mappingMetadatas": [
+            {
+                "ensemblReleaseNumber": 96,
+                "genomeBuildVersion": "GRCh38.p12",
+                "dbsnpVersion": 151,
+                "usageStartDate": "2019-04-08T19:00:02.157+0000"
+            }
+        ]
+    }
+}

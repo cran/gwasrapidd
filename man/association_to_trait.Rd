@@ -23,7 +23,9 @@ A dataframe of two identifiers. First column is the association
 Map an association accession identifier to an EFO trait id.
 }
 \examples{
+\dontrun{
 # Map GWAS association identifiers to EFO trait identifiers
 association_to_trait(c('24300097', '24299759'))
+}
 
 }

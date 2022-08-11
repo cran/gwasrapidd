@@ -1,7 +1,7 @@
 Package: gwasrapidd
 Type: Package
 Title: 'REST' 'API' Client for the 'NHGRI'-'EBI' 'GWAS' Catalog
-Version: 0.99.12
+Version: 0.99.13
 Authors@R: c(
     person(given = "Ramiro", family = "Magno", email = "ramiro.magno@gmail.com",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5226-3441")),
@@ -21,7 +21,7 @@ BugReports: https://github.com/ramiromagno/gwasrapidd/issues
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Imports: magrittr, httr, urltools, pingr, stringr, concatenate, dplyr,
         jsonlite, purrr, tibble, glue, tidyr (> 0.8.99), assertthat,
         rlang, methods, lubridate, plyr, testthat, utils, progress
@@ -40,10 +40,10 @@ VignetteBuilder: knitr
 biocViews: ThirdPartyClient, BiomedicalInformatics,
         GenomeWideAssociation, SNP
 NeedsCompilation: no
-Packaged: 2021-11-26 00:46:12 UTC; rmagno
+Packaged: 2022-08-11 22:04:08 UTC; rmagno
 Author: Ramiro Magno [aut, cre] (<https://orcid.org/0000-0001-5226-3441>),
   Ana-Teresa Maia [aut] (<https://orcid.org/0000-0002-0454-9207>),
   CINTESIS [cph, fnd]
 Maintainer: Ramiro Magno <ramiro.magno@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-11-29 11:50:02 UTC
+Date/Publication: 2022-08-11 22:20:02 UTC

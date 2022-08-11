@@ -11,8 +11,10 @@
 #'   and the second column is the association identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS study identifiers to association identifiers
 #' study_to_association(c('GCST001084', 'GCST001085'))
+#' }
 #'
 #' @export
 study_to_association <- function(study_id, verbose = FALSE, warnings = TRUE) {
@@ -56,8 +58,10 @@ study_to_association <- function(study_id, verbose = FALSE, warnings = TRUE) {
 #'   and the second column is the variant identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS study identifiers to variant identifiers
 #' study_to_variant(c('GCST001084', 'GCST001085'))
+#' }
 #'
 #' @export
 study_to_variant <- function(study_id, verbose = FALSE, warnings = TRUE) {
@@ -100,8 +104,10 @@ study_to_variant <- function(study_id, verbose = FALSE, warnings = TRUE) {
 #'   and the second column is the EFO identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS study identifiers to EFO trait identifiers
 #' study_to_trait(c('GCST001084', 'GCST001085'))
+#' }
 #'
 #' @export
 study_to_trait <- function(study_id, verbose = FALSE, warnings = TRUE) {
@@ -145,8 +151,10 @@ study_to_trait <- function(study_id, verbose = FALSE, warnings = TRUE) {
 #'   identifier and the second column is the study identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS association identifiers to study identifiers
 #' association_to_study(c('24300097', '24299759'))
+#' }
 #'
 #' @export
 association_to_study <- function(association_id, verbose = FALSE, warnings = TRUE) {
@@ -191,8 +199,10 @@ association_to_study <- function(association_id, verbose = FALSE, warnings = TRU
 #'   identifier and the second column is the variant identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS association identifiers to variant identifiers
 #' association_to_variant(c('24300097', '24299759'))
+#' }
 #'
 #' @export
 association_to_variant <- function(association_id, verbose = FALSE, warnings = TRUE) {
@@ -236,8 +246,10 @@ association_to_variant <- function(association_id, verbose = FALSE, warnings = T
 #'   identifier and the second column is the EFO trait identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS association identifiers to EFO trait identifiers
 #' association_to_trait(c('24300097', '24299759'))
+#' }
 #'
 #' @export
 association_to_trait <- function(association_id, verbose = FALSE, warnings = TRUE) {
@@ -280,8 +292,10 @@ association_to_trait <- function(association_id, verbose = FALSE, warnings = TRU
 #'   identifier and the second column is the study identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS variant identifiers to study identifiers
 #' variant_to_study(c('rs7904579', 'rs138331350'))
+#' }
 #'
 #' @export
 variant_to_study <- function(variant_id, verbose = FALSE, warnings = TRUE) {
@@ -324,8 +338,10 @@ variant_to_study <- function(variant_id, verbose = FALSE, warnings = TRUE) {
 #'   identifier and the second column is the association identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map GWAS variant identifiers to association identifiers
 #' variant_to_association(c('rs7904579', 'rs138331350'))
+#' }
 #'
 #' @export
 variant_to_association <- function(variant_id, verbose = FALSE, warnings = TRUE) {
@@ -377,12 +393,14 @@ variant_to_association <- function(variant_id, verbose = FALSE, warnings = TRUE)
 #'
 #' @importFrom rlang .data
 #' @examples
+#' \dontrun{
 #' # Map GWAS variant identifiers to EFO trait identifiers
 #' variant_to_trait(c('rs7904579', 'rs138331350'))
 #'
 #' # Map GWAS variant identifiers to EFO trait identifiers
 #' # but keep the intermediate association identifier
 #' variant_to_trait(c('rs7904579', 'rs138331350'), keep_association_id = TRUE)
+#' }
 #'
 #' @export
 variant_to_trait <- function(variant_id, keep_association_id = FALSE, verbose = FALSE, warnings = TRUE) {
@@ -436,8 +454,10 @@ variant_to_trait <- function(variant_id, keep_association_id = FALSE, verbose = 
 #'   identifier and the second column is the study identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map EFO trait identifiers to study identifiers
 #' trait_to_study(c('EFO_0005108', 'EFO_0005109'))
+#' }
 #'
 #' @export
 trait_to_study <- function(efo_id, verbose = FALSE, warnings = TRUE) {
@@ -480,8 +500,10 @@ trait_to_study <- function(efo_id, verbose = FALSE, warnings = TRUE) {
 #'   identifier and the second column is the association identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map EFO trait identifiers to association identifiers
 #' trait_to_association(c('EFO_0005108', 'EFO_0005109'))
+#' }
 #'
 #' @export
 trait_to_association <- function(efo_id, verbose = FALSE, warnings = TRUE) {
@@ -525,8 +547,10 @@ trait_to_association <- function(efo_id, verbose = FALSE, warnings = TRUE) {
 #'   identifier and the second column is the variant identifier.
 #'
 #' @examples
+#' \dontrun{
 #' # Map EFO trait identifiers to variant identifiers
 #' trait_to_variant('EFO_0005229')
+#' }
 #'
 #' @export
 trait_to_variant <- function(efo_id, verbose = FALSE, warnings = TRUE) {

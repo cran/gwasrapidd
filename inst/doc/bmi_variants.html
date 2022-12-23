@@ -86,7 +86,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -99,7 +99,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -120,13 +120,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -351,18 +358,18 @@ all traits in the GWAS Catalog.</p>
 <p>Then look for ‘BMI’ in the trait description column.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(all_traits<span class="sc">@</span>traits, <span class="fu">grepl</span>(<span class="st">&#39;BMI&#39;</span>, trait, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 3</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    efo_id      trait                                          uri            </span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;                                          &lt;chr&gt;          </span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 EFO_0005937 longitudinal BMI measurement                   http://www.ebi…</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 EFO_0007737 BMI-adjusted adiponectin measurement           http://www.ebi…</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 EFO_0007788 BMI-adjusted waist-hip ratio                   http://www.ebi…</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 EFO_0007789 BMI-adjusted waist circumference               http://www.ebi…</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 EFO_0007793 BMI-adjusted leptin measurement                http://www.ebi…</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 EFO_0008036 BMI-adjusted fasting blood glucose measurement http://www.ebi…</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 EFO_0008037 BMI-adjusted fasting blood insulin measurement http://www.ebi…</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 EFO_0008039 BMI-adjusted hip circumference                 http://www.ebi…</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 EFO_0011044 BMI-adjusted neck circumference                http://www.ebi…</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 EFO_0008038 BMI-adjusted hip bone size                     http://www.ebi…</span></span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    efo_id      trait                                          uri                                 </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;                                          &lt;chr&gt;                               </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 EFO_0005937 longitudinal BMI measurement                   http://www.ebi.ac.uk/efo/EFO_0005937</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 EFO_0007737 BMI-adjusted adiponectin measurement           http://www.ebi.ac.uk/efo/EFO_0007737</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 EFO_0007788 BMI-adjusted waist-hip ratio                   http://www.ebi.ac.uk/efo/EFO_0007788</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 EFO_0007789 BMI-adjusted waist circumference               http://www.ebi.ac.uk/efo/EFO_0007789</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 EFO_0007793 BMI-adjusted leptin measurement                http://www.ebi.ac.uk/efo/EFO_0007793</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 EFO_0008036 BMI-adjusted fasting blood glucose measurement http://www.ebi.ac.uk/efo/EFO_0008036</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 EFO_0008037 BMI-adjusted fasting blood insulin measurement http://www.ebi.ac.uk/efo/EFO_0008037</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 EFO_0008038 BMI-adjusted hip bone size                     http://www.ebi.ac.uk/efo/EFO_0008038</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 EFO_0008039 BMI-adjusted hip circumference                 http://www.ebi.ac.uk/efo/EFO_0008039</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 EFO_0011044 BMI-adjusted neck circumference                http://www.ebi.ac.uk/efo/EFO_0011044</span></span></code></pre></div>
 <p>So there are several phenotypes whose description includes the
 keyword ‘BMI’. However, only the EFO trait <code>&#39;EFO_0005937&#39;</code>
 (‘longitudinal BMI measurement’) really corresponds to BMI as a
@@ -380,8 +387,7 @@ namely <code>&#39;associations&#39;</code>, <code>&#39;loci&#39;</code>,
 <code>&#39;risk_alleles&#39;</code>, <code>&#39;genes&#39;</code>,
 <code>&#39;ensembl_ids&#39;</code> and <code>&#39;entrez_ids&#39;</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slotNames</span>(bmi_associations)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;associations&quot; &quot;loci&quot;         &quot;risk_alleles&quot; &quot;genes&quot;       </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] &quot;ensembl_ids&quot;  &quot;entrez_ids&quot;</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;associations&quot; &quot;loci&quot;         &quot;risk_alleles&quot; &quot;genes&quot;        &quot;ensembl_ids&quot;  &quot;entrez_ids&quot;</span></span></code></pre></div>
 <p>From table <code>&#39;associations&#39;</code> we can extract the
 variables:</p>
 <ul>
@@ -411,21 +417,19 @@ combinations might be repeated as the same variant/allele combination
 might have been assessed in more than one GWAS study.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bmi_variants</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 42 × 7</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    association_id variant_id  risk_allele     pvalue beta_n…¹ beta_…² beta_…³</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 10066323       rs10041997  A           0.0000004     0.138 unit    increa…</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 61729722       rs10070777  A           0.000004      0.879 unit    increa…</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 61729714       rs10278819  C           0.000002      0.873 unit    increa…</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 61729787       rs10426669  G           0.000006      0.765 unit    increa…</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 61729731       rs1048163   G           0.000005      0.450 unit    increa…</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 61729771       rs1048164   A           0.000009      0.436 unit    increa…</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 55309232       rs10515235  A           0.000002      0.05  unit    increa…</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 55309249       rs10938397  G           0.00000003    0.06  unit    increa…</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 61729763       rs112045010 C           0.000005      0.906 unit    increa…</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 61729759       rs11979775  C           0.000005      0.501 unit    increa…</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 32 more rows, and abbreviated variable names ¹​beta_number,</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   ²​beta_unit, ³​beta_direction</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ Use `print(n = ...)` to see more rows</span></span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    association_id variant_id  risk_allele     pvalue beta_number beta_unit beta_direction</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 10066323       rs10041997  A           0.0000004        0.138 unit      increase      </span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 61729722       rs10070777  A           0.000004         0.879 unit      increase      </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 61729714       rs10278819  C           0.000002         0.873 unit      increase      </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 61729787       rs10426669  G           0.000006         0.765 unit      increase      </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 61729731       rs1048163   G           0.000005         0.450 unit      increase      </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 61729771       rs1048164   A           0.000009         0.436 unit      increase      </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 55309232       rs10515235  A           0.000002         0.05  unit      increase      </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 55309249       rs10938397  G           0.00000003       0.06  unit      increase      </span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 61729763       rs112045010 C           0.000005         0.906 unit      increase      </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 61729759       rs11979775  C           0.000005         0.501 unit      increase      </span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 32 more rows</span></span></code></pre></div>
 
 
 

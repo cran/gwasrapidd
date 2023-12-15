@@ -1,3 +1,17 @@
+# gwasrapidd 0.99.17
+
+- Fixed issue [#45](https://github.com/ramiromagno/gwasrapidd/issues/45)
+- Fixed documentation of `traits()`
+
+# gwasrapidd 0.99.16
+
+- Fixed issue [#46](https://github.com/ramiromagno/gwasrapidd/issues/46)
+
+# gwasrapidd 0.99.15
+
+- Fixed issue [#41](https://github.com/ramiromagno/gwasrapidd/issues/41)
+- Update http mocks
+
 ## gwasrapidd 0.99.14
 
 - Merged pull request [#37](https://github.com/ramiromagno/gwasrapidd/pull/37).

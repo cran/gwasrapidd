@@ -38,7 +38,7 @@ gc_request <- function(resource_url = "/", base_url = gwas_rest_api_base_url,
   if(verbose) message(glue::glue("Using the user agent: {user_agent_id$options$useragent}."))
   response <- httr::GET(url, user_agent_id)
 
-  response_code <- httr::status_code(response)
+  response_code <- status_code(response)
   if(verbose) message(glue::glue("Response code: {response_code}."))
 
   # Response object (a list of four elements):
@@ -171,7 +171,7 @@ object_type_from_url <- Vectorize(function(resource_url) {
     traits =    "^(https://www.ebi.ac.uk/gwas/rest/api)?/efoTraits/search/.*$"
   )
 
-  match <- stringr::str_detect(resource_url, patterns)
+  match <- str_detect(resource_url, patterns)
 
   if(identical(as.integer(sum(match)), 0L))
     stop("No pattern matched the URL: ", resource_url, ".")
@@ -181,7 +181,7 @@ object_type_from_url <- Vectorize(function(resource_url) {
   if(length(obj_type) > 1L) {
     stop("More than one object type possible for the URL: ",
          resource_url, ": ",
-         concatenate::cc_and(obj_type),
+         cc_and(obj_type),
          ".")
   }
 
@@ -222,7 +222,7 @@ is_paginated <- function(content) 'page' %in% names(content)
 #' @return A list four named elements:
 #' \describe{
 #' \item{url}{The URL endpoint.}
-#' \item{response_code}{\href{https://tinyurl.com/8yqvhwf}{HTTP
+#' \item{response_code}{\href{https://en.wikipedia.org/wiki/List_of_HTTP_status_codes}{HTTP
 #' status code}.}
 #' \item{status}{A string describing the status of the response obtained. It is
 #' "OK" if everything went OK or some other string describing the problem

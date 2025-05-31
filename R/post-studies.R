@@ -24,7 +24,7 @@ open_in_pubmed <- function(pubmed_id) {
 
   if (any(!is_pubmed_id(pubmed_id2)))
     stop("These are not valid PubMed IDs: ",
-         concatenate::cc_and(pubmed_id[!is_pubmed_id(pubmed_id2)],
+         cc_and(pubmed_id[!is_pubmed_id(pubmed_id2)],
                              oxford = TRUE),
          ".")
 
@@ -32,7 +32,7 @@ open_in_pubmed <- function(pubmed_id) {
   urls <-
     glue::glue("https://pubmed.ncbi.nlm.nih.gov/{pubmed_id2}")
 
-  purrr::walk(urls, utils::browseURL)
+  purrr::walk(urls, browse_url)
 
   return(invisible(TRUE))
   } else {
